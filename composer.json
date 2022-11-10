@@ -1,0 +1,25 @@
+{
+    "name": "project/project",
+    "type": "project",
+    "description": "",
+    "require": {
+        "php": ">=7.4",
+        "crazycodr/standard-exceptions": "^2.4",
+        "symfony/http-foundation": "^6.1",
+        "doctrine/orm": "^2.13",
+        "symfony/cache": "^6.1",
+        "doctrine/annotations": "^1.13",
+        "devcoder-xyz/php-dotenv": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Api\\": "api",
+            "Common\\": "common",
+            "Frontend\\": "frontend"
+        },
+        "files": [
+            "config/app.php",
+            "routes/web.php"
+        ]
+    }
+}
