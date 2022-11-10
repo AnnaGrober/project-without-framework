@@ -40,7 +40,7 @@ class Route
         }
         $rm                 = new \ReflectionMethod($controllerName, $methodName);
         $params             = [];
-        $paramsToController = [];
+        $paramsToController = ['request' => $request];
         preg_match_all($router->getMask(), $url, $params);
 
         foreach ($router->getParams() as $key => $param) {

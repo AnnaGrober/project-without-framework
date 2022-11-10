@@ -1,1 +1,1 @@
-# project-without-framework
+сгенерировать таблицы: php bin/doctrine orm:schema-tool:create

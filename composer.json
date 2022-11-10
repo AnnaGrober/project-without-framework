@@ -9,7 +9,8 @@
         "doctrine/orm": "^2.13",
         "symfony/cache": "^6.1",
         "doctrine/annotations": "^1.13",
-        "devcoder-xyz/php-dotenv": "*"
+        "devcoder-xyz/php-dotenv": "*",
+        "rakit/validation": "^1.4"
     },
     "autoload": {
         "psr-4": {
@@ -18,8 +19,7 @@
             "Frontend\\": "frontend"
         },
         "files": [
-            "config/app.php",
-            "routes/web.php"
+            "routes/api.php"
         ]
     }
 }
