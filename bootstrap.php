@@ -3,6 +3,7 @@
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
 use DevCoder\DotEnv;
+use DI\ContainerBuilder;
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -22,3 +23,4 @@ $dbParams = [
 ];
 $config        = ORMSetup::createAnnotationMetadataConfiguration(['common/Entities/'], $isDevMode);
 $entityManager = EntityManager::create($dbParams, $config);
+

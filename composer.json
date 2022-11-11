@@ -10,7 +10,8 @@
         "symfony/cache": "^6.1",
         "doctrine/annotations": "^1.13",
         "devcoder-xyz/php-dotenv": "*",
-        "rakit/validation": "^1.4"
+        "rakit/validation": "^1.4",
+        "php-di/php-di": "^6.4"
     },
     "autoload": {
         "psr-4": {
