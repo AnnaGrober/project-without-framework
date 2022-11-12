@@ -3,15 +3,16 @@
     "type": "project",
     "description": "",
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.0",
         "crazycodr/standard-exceptions": "^2.4",
         "symfony/http-foundation": "^6.1",
-        "doctrine/orm": "^2.13",
+        "doctrine/orm": "^2.9",
         "symfony/cache": "^6.1",
         "doctrine/annotations": "^1.13",
         "devcoder-xyz/php-dotenv": "*",
         "rakit/validation": "^1.4",
-        "php-di/php-di": "^6.4"
+        "php-di/php-di": "^6.4",
+        "larapack/dd": "^1.1"
     },
     "autoload": {
         "psr-4": {
