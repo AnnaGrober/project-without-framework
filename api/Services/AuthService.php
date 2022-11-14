@@ -6,6 +6,8 @@ use Common\Entities\User;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\OptimisticLockException;
+use Carbon\Carbon;
+use Firebase\JWT\JWT;
 
 /**
  *
@@ -48,8 +50,7 @@ class AuthService
      * @param array $data
      *
      * @return array
-     * @throws ORMException
-     * @throws OptimisticLockException
+     * @throws \Exception
      */
     public function login(array $data): array
     {
@@ -58,21 +59,35 @@ class AuthService
             if (!password_verify($data['password'], $user->getPassword())) {
                 return ['success' => false, 'message' => 'Неверный пароль!'];
             }
-            //$this->generateToken();
+            $jwt = $this->generateToken($user);
+
+            return ['success' => true, 'message' => 'Успешный вход в систему!', 'jwt' => $jwt];
         } catch (\Exception $e) {
             throw $e;
         }
     }
 
-    private function generateToken(){
-        $key = mt_rand();
+    /**
+     * @param User $user
+     *
+     * @return string
+     */
+    private function generateToken(User $user): string
+    {
+        $key     = getenv('JWT_SECRET_KEY');
         $payload = [
-            'iss' => getenv('APP_URL'),
-            'aud' => getenv('APP_URL'),
-            'iat' => Carbon::now()->timestamp,
-            'nbf' => 1357000000
+            'iss'  => getenv('APP_URL'),
+            'aud'  => getenv('APP_URL'),
+            'iat'  => Carbon::now()->timestamp,
+            'nbf'  => Carbon::now()->timestamp,
+            'data' => [
+                'id'    => $user->getId(),
+                'name'  => $user->getName(),
+                'email' => $user->getEmail(),
+            ],
         ];
 
+        return JWT::encode($payload, $key, 'HS256');
     }
 
 }
