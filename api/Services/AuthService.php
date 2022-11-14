@@ -58,8 +58,6 @@ class AuthService
             if (!password_verify($data['password'], $user->getPassword())) {
                 return ['success' => false, 'message' => 'Неверный пароль!'];
             }
-            $test = '2332424';
-            dd('213434545 $test ');
             //$this->generateToken();
         } catch (\Exception $e) {
             throw $e;
