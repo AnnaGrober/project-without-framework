@@ -3,14 +3,14 @@
 namespace Common\Validation\Rules;
 
 use Common\Entities\User;
-use Rakit\Validation\Rule;
 
 /**
  *
  */
-class UniqueRule extends Rule
+class ExistRule extends \Rakit\Validation\Rule
 {
-    protected $message = ':attribute :value уже используется';
+
+    protected $message = ':attribute :value не зарегистрирован';
 
     protected $fillableParams = ['table', 'column'];
 
@@ -28,6 +28,6 @@ class UniqueRule extends Rule
     {
         $count = $this->em->getRepository(User::class)->count(['email' => $value]);
 
-        return $count === 0;
+        return $count !== 0;
     }
 }

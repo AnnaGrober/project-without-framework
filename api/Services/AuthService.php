@@ -3,9 +3,7 @@
 namespace Api\Services;
 
 use Common\Entities\User;
-use DI\Container;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\OptimisticLockException;
 
@@ -22,8 +20,11 @@ class AuthService
     }
 
     /**
-     * @throws OptimisticLockException
+     * @param array $data
+     *
+     * @return array
      * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function register(array $data): array
     {
@@ -41,6 +42,39 @@ class AuthService
         } catch (\Exception $e) {
             throw $e;
         }
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return array
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function login(array $data): array
+    {
+        try {
+            $user = $this->em->getRepository(User::class)->findOneBy(['email' => $data['email']]);
+            if (!password_verify($data['password'], $user->getPassword())) {
+                return ['success' => false, 'message' => 'Неверный пароль!'];
+            }
+            $test = '2332424';
+            dd('213434545 $test ');
+            //$this->generateToken();
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    private function generateToken(){
+        $key = mt_rand();
+        $payload = [
+            'iss' => getenv('APP_URL'),
+            'aud' => getenv('APP_URL'),
+            'iat' => Carbon::now()->timestamp,
+            'nbf' => 1357000000
+        ];
+
     }
 
 }

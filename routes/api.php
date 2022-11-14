@@ -10,3 +10,4 @@ $container->init();
 $route = $container->get('Common\Routing\Route');
 
 $route->post('/v1/auth/register', \Api\Controllers\AuthController::class, 'register');
+$route->post('/v1/auth/login', \Api\Controllers\AuthController::class, 'login');

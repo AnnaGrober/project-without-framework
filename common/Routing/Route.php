@@ -37,13 +37,12 @@ class Route
                 return;
             }
 
-            $factory = $this->container->get(RouteFactory::class);
-            $factory->setRequest($request);
-            $factory->setControllerName($arguments[1]);
-            $factory->setMethodName($arguments[2]);
-            $factory->setRouter($router);
-
-            return $factory->build();
+            return $this->container->get(RouteFactory::class)
+                ->setRequest($request)
+                ->setControllerName($arguments[1])
+                ->setMethodName($arguments[2])
+                ->setRouter($router)
+                ->build();
         } catch (\Exception $e) {
             throw $e;
         }
