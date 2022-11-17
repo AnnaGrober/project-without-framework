@@ -20,16 +20,9 @@ class AuthController extends Controller
         $this->validator = $validator;
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return Response
-     * @throws \Doctrine\ORM\Exception\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \JsonException
-     */
     public function register(Request $request)
     {
+        dd($request);
         $data       = $request->request->all();
         $validation = $this->validator->make($data, [
             'name'     => 'required',
@@ -44,6 +37,7 @@ class AuthController extends Controller
 
         return new Response($this->service->register($data));
     }
+
 
     /**
      * @param Request $request
@@ -63,6 +57,7 @@ class AuthController extends Controller
             $errors = $validation->errors();
             throw new ValidationException(json_encode($errors->all(), JSON_THROW_ON_ERROR), 422);
         }
+
         return new Response($this->service->login($data));
     }
 

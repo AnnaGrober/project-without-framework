@@ -1,4 +1,6 @@
 import './../style.css'
+import './modules/registration'
+import {Registration} from "./modules/registration";
 
 const form = document.getElementById('signupForm');
 const name = form.querySelector('#signupName');
@@ -16,12 +18,13 @@ function submitFormHandler(event) {
     };
     signupButton.disabled = true;
 
-    //axios send //
+    Registration.registration(user).then(() => {
+        name.value = '';
+        email.value = '';
+        password.value = '';
+        signupButton.disabled = false;
+    });
 
-    name.value = '';
-    email.value = '';
-    password.value = '';
-    signupButton.disabled = false;
 }
 
 form.addEventListener('submit', submitFormHandler);
