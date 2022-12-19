@@ -22,7 +22,6 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        dd($request);
         $data       = $request->request->all();
         $validation = $this->validator->make($data, [
             'name'     => 'required',
